@@ -1,23 +1,50 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import HeroBanner from './components/HeroBanner';
+import ShoeList from './components/ShoeList';
+import ProductCategory from './components/ProductCategory';
+import JibbitzCustomizer from './components/JibbitzCustomizer';
 import './App.css';
+import Footer from './components/Footer';
+import IntroPage from './components/IntroPage';
+import PromoBanner from './components/PromoBanner';
+import promoBannerImg from './image/promobanner.png';
+import PromoList from './components/PromoList';
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+  
+  useEffect(() => {
+    
+   if (sessionStorage.getItem('introViewed')) {
+   setShowIntro(false);
+   return;
+    }
+
+   
+    const timer = setTimeout(() => {
+      setShowIntro(false);
+      sessionStorage.setItem('introViewed', 'true'); 
+    }, 10000);
+
+    return () => clearTimeout(timer); 
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {showIntro && <IntroPage />}
+
+      {/* 메인 페이지 구성 요소들 */}
+      <Header />
+      <HeroBanner />
+      <ShoeList />
+      <PromoBanner />
+      <ProductCategory />
+      <JibbitzCustomizer/>
+      <img src={promoBannerImg} alt="크록스 클럽 배너" style={{ width: '100%', display: 'block' }} />
+      
+      <PromoList />
+      <Footer />
     </div>
   );
 }

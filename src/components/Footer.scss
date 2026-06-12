@@ -1,0 +1,192 @@
+$font-gothic: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+$font-round: 'TMoneyRoundWind', sans-serif;
+
+$bg-color: #e0e0e0;
+$nm-inset-shadow: inset 4px 4px 8px #b8b8b8, inset -4px -4px 8px #ffffff;
+$hole-outer-shadow: inset 2px 2px 4px #bebebe, inset -2px -2px 4px #ffffff;
+$inner-circle-color: #bebebe; 
+
+@font-face {
+  font-family: 'TMoneyRoundWind';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TMoneyRoundWind';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-display: swap;
+}
+
+.footer {
+  background-color: $bg-color;
+  padding: 30px 0; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__accordion {
+    width: 402px; 
+    margin: 0 16px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+  }
+
+  &__section {
+    background: transparent; 
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  &__title-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 14px 0 14px 8px; 
+    font-family: $font-round;
+    font-weight: 800;
+    font-size: 1.25rem; 
+    color: #111111;
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: 24px; 
+      height: 24px;
+      border-radius: 50%;
+      background: $bg-color;
+      box-shadow: $hole-outer-shadow;
+      margin-right: 14px;
+      flex-shrink: 0;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: calc(8px + (24px - 12px) / 2); 
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $inner-circle-color;
+    }
+  }
+
+  &__popup {
+  position: absolute;
+  bottom: 1;
+  left: 1px;       
+  width: 45px;    
+  height: 45px;
+  z-index: 10;
+  cursor: pointer;
+  animation: slideUp 0.1s ease;
+}
+
+&__popup-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;  // 원형으로
+}
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease, margin 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    padding: 0 16px 0 62px; 
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: $font-gothic; 
+    text-align: left;
+  }
+
+  &__item {
+    padding: 5px 0; 
+    font-size: 0.9rem; 
+    color: #444444;
+    line-height: 1.5;
+
+    &--title {
+      font-weight: 700; 
+      color: #111111;
+      padding-top: 12px; 
+      padding-bottom: 2px; 
+      
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+
+    &--content {
+      padding-top: 0;
+      padding-bottom: 3px;
+      color: #555555;
+    }
+
+    &--link {
+      padding-top: 10px;
+      color: #111111;
+      cursor: pointer;
+    }
+  }
+  
+  &__info-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  &__info-text {
+    display: block;
+    font-size: 0.8rem;
+    color: #777777;
+    line-height: 1.3; 
+    padding: 1px 0;
+  }
+
+  &__link {
+    color: #333333;
+    text-decoration: none; 
+    font-weight: 500;
+    display: inline-block;
+
+    &:hover {
+      font-weight: 600; 
+    }
+  }
+
+  &__section.is-open {
+    .footer__content {
+      max-height: 600px; 
+      margin-top: 4px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      box-shadow: $nm-inset-shadow; 
+      background: $bg-color;
+    }
+  }
+}

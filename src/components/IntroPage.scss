@@ -1,0 +1,151 @@
+$bg-color: #ededed;       
+$light-shadow: #ffffff;   
+$dark-shadow: #c7c7c7;    
+$hole-size: 55px;
+$font-baloo: 'Baloo Bhai 2', sans-serif;
+
+.crocs-intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-color;
+  z-index: 9999;
+  overflow: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  font-family:$font-baloo;
+
+  &--fade-out {
+    opacity: 0;
+    transform: scale(1.02);
+    pointer-events: none;
+  }
+
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 402px;             
+    height: 100%;
+    overflow: hidden;         
+    pointer-events: none;
+
+    & > div {
+      pointer-events: auto;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    top: 64px;
+    left: 16px;
+    z-index: 10;
+    animation: fadeIn 0.8s ease forwards;
+
+    .logo-image {
+      width: 134px;      
+      height: auto;  
+      display: block;
+    }
+  }
+
+  &__hole-bg {
+    position: absolute;
+    width: $hole-size;
+    height: $hole-size;
+    border-radius: 50%;
+    background-color: $bg-color;
+    box-shadow:
+      inset 4px 4px 10px $dark-shadow,
+      inset -4px -4px 10px $light-shadow,
+      inset 0px 3px 7px rgba(0, 0, 0, 0.08);
+  }
+
+  &__hole {
+    position: absolute;
+    width: $hole-size;
+    height: $hole-size;
+    border-radius: 50%;
+    background-color: $bg-color;
+    box-shadow:
+      inset 4px 4px 10px $dark-shadow,
+      inset -4px -4px 10px $light-shadow,
+      inset 0px 3px 7px rgba(0, 0, 0, 0.08);
+
+    .intro-text {
+      position: absolute;
+      top: 50%;
+      line-height: 1;
+      font-size: 20px;
+      font-weight: 800;
+      color: #000;
+      white-space: nowrap;
+      opacity: 0;
+      font-family: $font-baloo;
+    }
+
+
+    &.hole--left .intro-text {
+      text-align: right;       
+      transform-origin: right; 
+    }
+
+
+    &.hole--right .intro-text {
+      text-align: left;        
+      transform-origin: left; 
+    }
+
+    // 🔥 [애니메이션 연결] 수직 중앙(-50%)을 기본으로 깔고 쏙 튀어나오게 연결
+    &.active.hole--left .intro-text {
+      animation: textPopToLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    &.active.hole--right .intro-text {
+      animation: textPopToRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+  }
+}
+
+// --------------------------------------------------
+// 🔥 [애니메이션 완전 수정] 원 중심에서 바깥쪽으로 쏙! 밀려나는 효과
+// --------------------------------------------------
+
+// 우측 구멍 -> 글자가 왼쪽 방향으로 쏙! 튀어나옴
+@keyframes textPopToLeft {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translate(calc(-50% - 42px), -50%) scale(1); opacity: 1; }
+}
+
+@keyframes textPopToRight {
+  0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translate(calc(-50% + 100px), -50%) scale(1); opacity: 1; }
+}
+
+// 2. Shoes. 전용 규칙 (가장 중요!)
+.align-left {
+  .intro-text {
+    text-align: left !important;
+    /* 기존에 걸려있는 애니메이션을 여기서 확실히 죽입니다 */
+    animation: none !important;
+  }
+  
+  /* active 클래스가 붙는 순간(setTimeout 시점) 딱 한 번 실행 */
+  &.active .intro-text {
+    animation: textPopToRightShoes 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+  }
+}
+
+@keyframes textPopToRightShoes {
+  0% { transform: translateY(-50%) scale(0.6); opacity: 0; }
+  30% { opacity: 1; }
+  100% { 
+    /* Shoes. 위치 조정 */
+    transform: translateY(-50%) translateX(20px) scale(1); 
+    opacity: 1; 
+  }
+}

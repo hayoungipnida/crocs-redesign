@@ -1,0 +1,182 @@
+$neu-bg: #ededed;
+$neu-light: #ffffff;
+$neu-dark: #c5c8d0;
+$font-gothic: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+$font-round: 'TMoneyRoundWind', sans-serif;
+$accent: #e8907a;
+
+ 
+.jibbitz {
+  padding: 0 0 60px;
+  font-family: $font-gothic;
+
+
+   &__title {
+    font-family: $font-round;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 3px;
+    padding-left: 16px;
+  }
+
+  &__title2{
+    font-family: $font-round;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 64px;
+    padding-left: 16px;
+    display: inline-block;
+  }
+
+ 
+  /* ── 신발 영역 ── */
+  &__shoe-wrap {
+    position: relative;
+    margin: 0 16px 12px;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 280px;   
+  margin-left: auto;  
+  margin-right: auto;
+  }
+ 
+
+ 
+  &__shoe-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+ 
+  /* ── 슬롯 ── */
+  &__slot {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: background 0.2s;
+    
+ 
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;      
+    }
+
+     &--big img {
+    width: 110px;   
+    height: 110px;
+  }
+
+ 
+    span {
+      font-size: 9px;
+      color: #c08070;
+      text-align: center;
+    }
+ 
+    &--filled {
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(180, 100, 80, 0.2);
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+  }
+ 
+  /* ── 리셋 ── */
+  &__reset {
+    display: block;
+    width: calc(100% - 32px);
+    margin: 0 16px 16px;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    background: $neu-bg;
+    box-shadow: 4px 4px 8px $neu-dark, -4px -4px 8px $neu-light;
+    font-family: $font-gothic;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    cursor: pointer;
+ 
+    &:active {
+      box-shadow: inset 4px 4px 8px $neu-dark, inset -4px -4px 8px $neu-light;
+    }
+  }
+ 
+  /* ── 지비츠 그리드 ── */
+  &__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 16px;
+  margin: 0 16px;
+  background: $neu-bg;
+  border-radius: 20px;
+  box-shadow: 6px 6px 12px $neu-dark, -6px -6px 12px $neu-light; // 전체 박스에 뉴모피즘
+}
+
+&__item {
+  background: $neu-bg;
+  border-radius: 12px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  box-shadow: none; // 개별 shadow 제거
+  transition: transform 0.15s, box-shadow 0.15s;
+
+  img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  span {
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    padding: 4px;
+  }
+
+  &:active {
+    transform: scale(0.95);
+    cursor: grabbing;
+    box-shadow: inset 4px 4px 8px $neu-dark, inset -4px -4px 8px $neu-light; // 드래그할 때만 inset
+  }
+}
+
+&__more {
+  background: $neu-bg;
+  border-radius: 12px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+ box-shadow: inset 3px 3px 6px $neu-dark, inset -3px -3px 6px $neu-light;
+
+  &:active {
+    box-shadow: inset 4px 4px 8px $neu-dark, inset -4px -4px 8px $neu-light;
+  }
+}
+ 
+  &__more-icon {
+    font-size: 18px;
+    color: #888;
+    line-height: 1;
+  }
+ 
+  &__more-label {
+    font-size: 12px;
+    color: #888;
+    font-family: $font-gothic;
+  }
+}

@@ -1,0 +1,12 @@
+.promo-banner {
+  width: 100%;
+  padding: 0 16px 60px;
+  box-sizing: border-box;
+
+  &__img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    display: block;
+  }
+}
