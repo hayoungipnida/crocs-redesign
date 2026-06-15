@@ -13,7 +13,7 @@ export default function PromoBanner() {
 
   return (
     <section className="promo-banner">
-      <img src={randomBanner} alt="프로모션 배너" className="promo-banner__img" />
+      <a href='#'><img src={randomBanner} alt="프로모션 배너" className="promo-banner__img" /></a>
     </section>
   );
 }

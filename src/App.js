@@ -41,7 +41,7 @@ function App() {
       <PromoBanner />
       <ProductCategory />
       <JibbitzCustomizer/>
-      <img src={promoBannerImg} alt="크록스 클럽 배너" style={{ width: '100%', display: 'block' }} />
+      <a href='#'><img src={promoBannerImg} alt="크록스 클럽 배너" style={{ width: '100%', display: 'block' }} /></a>
       
       <PromoList />
       <Footer />
